@@ -25,7 +25,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 # Fonction pour charger les données
 @st.cache_data
 def load_data():
-    df = pd.read_pickle('./data/c02_reduit_10percent.pkl')
+    df = pd.read_pickle('./data/c02_reduit_2e5.pkl')
     return df
 # TODO: import un fichier plus petit
 
