@@ -10,6 +10,12 @@ def app(df) :
 
 #   -----------------------------------Fonctions et code necessaire-----------
 
+    # Charge model
+
+    filepath = "./data"
+    filename = "xgb1901.joblib"
+    adress = f'{filepath}/{filename}'
+    model = joblib.load(adress)
 
 
     # Separate variables from target for regression
@@ -52,12 +58,7 @@ def app(df) :
         return X_ligne
 
 
-    # Charge model
 
-    filepath = "./data"
-    filename = "xgb1801.joblib"
-    adress = f'{filepath}/{filename}'
-    model = joblib.load(adress)
 
 
 
