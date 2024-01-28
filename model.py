@@ -40,7 +40,7 @@ def app(df) :
         st.write("""
                  # Problème de régression
                  ---
-                 ### 1. Modèle de Regression linéaire 
+                 ### 1. Modèle de Regression Linéaire 
                  - ###### Modèle simple sans régularisation
                  - ###### Modèle régularisé avec recherche des meilleurs paramètres.
                    Même si notre premier modèle ne semblait pas conduire à du surapprentissage, nous avons voulu tester differents paramètres de régularisation \
@@ -71,7 +71,74 @@ def app(df) :
             st.image(images_path + img_name,
             use_column_width= True )
 
-        st.write("Ce modèle donne déjà des résultats qui semblent corrects avec un R2_score de 0,89, c’est-à-dire que 89% de la variance du CO2 peut être expliquée par ce modèle de régression.")
+        st.write("Ce modèle donne déjà des résultats qui semblent corrects avec un **R2_score de 0,89**, c’est-à-dire que 89% de la variance du CO2 peut être expliquée par ce modèle de régression.")
+        st.write("")  
+
+        st.write("### 2. Modèle XGBoost pour la Régression.")  
+
+        col1, col2 = st.columns([0.65, 0.35], gap = 'medium')
+        with col1:             
+            st.write("""
+                    XGBoost est une amélioration optimisée de l'algorithme de boosting en arbres de décision.
+                    Le boosting consiste à entraîner plusieurs modèles faibles (ici des arbres de décision peu profonds) de manière itérative, en mettant à chaque itération l'accent sur les erreurs \
+                    commises par les arbres précédents. Le modèle final tient compte de l'ensemble des modèles faibles entrainés pour fournir ses prédictions. 
+                    """)
+            
+            xgb_param = st.expander("Recherche des meilleurs parametres" , expanded=False)
+            with xgb_param:
+                st.write("""
+                    ###### L'entraînement du modèle XGBoost a été effectué avec des paramètres variables que l'on a cherché à optimiser :                   
+                    - **learning_rate** :   
+                        'Taux d’apprentissage'. Une valeur faible entraîne un modèle plus robuste au sur-apprentissage, mais un calcul et une convergence plus lents qui nécessitent plus d'itérations. 
+                        Testé de 1 à 0,1.  
+                    - **max_depth** :  
+                        Profondeur des arbres. Plus les arbres sont profonds, plus le modèle est com-plèxe et plus grandes sont les chances d'overfitting. Testé 6 ± 2  
+                    - **colsample_bytree** :  
+                        Fraction de caractéristiques (features) à utiliser lors de la construction de chaque arbre de décision. Permet de gérer l'overfitting. Testé de 1 à 0,4  
+                    - **num_boost_round** :  
+                        Nombre maximum d'itérations ou de boosters (arbres) à entraîner. Ajusté en fonction des autres paramètres pour avoir une convergence.  
+                    - **early_stopping_rounds** :  
+                        Arrêt anticipé de l'entraînement si aucune amélioration significative n'est observée pendant un certain nombre d'itérations défini par ce paramètre. Entre 15 et 20.
+                    
+                    Des performancessouvent été très proches et très bonnes. 
+                    Le premier modèle testé avec les paramètres par défaut avait un score RMSE de 3,06 et les meilleurs modèle avec un Learning rate entre 0,1 et 0,5 ont un score RMSE de 2,42. 
+                        """)
+            
+
+        with col2:
+            url_image = "https://www.researchgate.net/profile/Li-Mingtao-2/publication/335483097/figure/fig3/AS:934217085100032@1599746118459/A-general-architecture-of-XGBoost.ppm"
+            st.image(url_image, width = 300, use_column_width= True )
+        
+
+        st.write("""
+                #### Résultats :  """)
+        col1, col2 = st.columns([0.7, 0.3])
+        with col1:
+            st.write("""   
+                **On obtient d'excellents scores**:   
+                Pas de sur-apprentissage (testé). L'erreur moyenne sur les prédictions est d'environ 1g/km pour des valeurs de l'ordre de 130 g/km.  
+                L'erreur moyenne relative est d'environ 1 %  
+
+                Ce modèle donne donc d'excellents résultats avec un R2_score de 0,997.   
+                99,7 % de la variance du CO2 peut être expliquée par le modèle. Difficile d'imaginer faire mieux !
+
+                    """)
+        with col2:
+            img_name = "score_xgb.png"
+            img = "./data/images/lr_elastic_net.png"                 
+            st.image(images_path + img_name,
+            use_column_width= True )
+
+        # st.write("Ce modèle donne déjà des résultats qui semblent corrects avec un **R2_score de 0,89**, c’est-à-dire que 89% de la variance du CO2 peut être expliquée par ce modèle de régression.")
+        # st.write("")  
+             
+            
+
+
+
+
+                 
+
 
 
 

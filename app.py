@@ -20,8 +20,8 @@ import exemple
 import accueil
 
 # Voir si c'est a mettre dans les pages ou la.
-# st.set_page_config(layout="wide")   # pb eventuel 
-# st.set_option('deprecation.showPyplotGlobalUse', False)
+st.set_page_config(layout="wide")   # pb eventuel 
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 #----------------------------------------------Chargement des données
 
