@@ -1,5 +1,8 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 # Import d'un modèle entrainé
 # Import d'un X_train, y_train
@@ -20,12 +23,42 @@ def app(df) :
             2. De chercher à améliorer le ou les modèles finaux retenu (optimisation des parametres)  
             3. Enfin, de s'interesser a la "feature importance" et interprétabilité de ces modèles finaux, pour analyse.
              
-            Pour des raisons  Nous avons mené cette démarche à la fois sur des modèles de régression et de classification. 
+            Nous avons mené cette démarche à la fois sur des modèles de régression et de classification. 
             """)
 
 
 
+    tab1, tab2 = st.tabs(["📈 Chart", "🗃 Data"])
+    data = np.random.randn(10, 1)
+    tab1.subheader("A tab with a chart")
+    with tab1:
+            
+        st.write("""
+            ## Matrice de correlation des variables quantitatives    
+            """)
 
+        dft = df[[ 'Co2', 'EnginePower','EngineCapacity', 'MassRunningOrder', 'InnovativeEmissionsReductionWltp', 'ElectricRange']]
+        fig, ax = plt.subplots()
+        sns.heatmap(dft.corr(), ax=ax,  annot = True, cmap='RdBu_r')
+        # st.write(fig)
+        st.pyplot(fig,use_container_width=True)
+
+    with tab2:
+                  
+                  
+        fig, axes = plt.subplots(2,3, figsize=(12,8))
+        axes = axes.flatten()
+        for i, col in enumerate([ 'Co2', 'MassRunningOrder', 'EngineCapacity', 'EnginePower', 'InnovativeEmissionsReductionWltp', 'ElectricRange']):
+            ax = axes[i]
+            sns.histplot(x=df[col], bins=40, color='b',alpha=0.5, ax=ax)
+            fig.subplots_adjust(hspace=0.5, wspace=0.3) 
+            ax.set_title(col)
+        st.write(fig) 
+          
+
+
+    tab2.subheader("A tab with the data")
+    tab2.write(data)
 
 """
 Construire une page qui permet de choisir toutes les caractériqtiques, et de préadire le CO2 (reglin)
