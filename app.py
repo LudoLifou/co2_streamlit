@@ -60,7 +60,7 @@ PAGES = {
     "Acceuil": accueil,
     "Présentation": intro,
     "Exploration des données": dataviz,
-    "Modélisation": model,
+    "Modèles de Machine Learning": model,
     "Démonstration": demo,
     "Conclusion et perspectives": conclusion,
     "Exemples et idees streamlit": exemple
