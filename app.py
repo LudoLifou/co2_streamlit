@@ -55,37 +55,42 @@ df_no_dum = st.session_state.df_no_dum
 
 #------------------------------------------------SOMMAIRE 
 
+
+
+st.sidebar.image("./data/images/pollution3.png", width=250, )
+
 st.sidebar.title("Emissions de CO2 des vehicules")
+
 PAGES = { 
     "Acceuil": accueil,
     "Présentation": intro,
-    "Exploration des données": dataviz,
-    "Modèles de Machine Learning": model,
+    "Exploration": dataviz,
+    "Modèles ML": model,
     "Démonstration": demo,
     "Conclusion et perspectives": conclusion,
-    "Exemples et idees streamlit": exemple
+    "Test_temp": exemple
     }
 
 selection = st.sidebar.radio("Menu", list(PAGES.keys()))
 page = PAGES[selection]
 page.app(df)
 
-st.sidebar.image(
-        "./data/images/pollution3.png",
-        width=250,
-    )
+
 
 ## Affichage des auteurs et mentor en bas de la sidebar:
 st.sidebar.write(' ')
 st.sidebar.write(' ')
 st.sidebar.write(' ')
-st.sidebar.write(' ')
-st.sidebar.write('### Auteurs:')
-st.sidebar.write('Ludovic Calmettes')
-st.sidebar.write('Ludovic Calmettes')
-st.sidebar.write('Ludovic Calmettes')
-st.sidebar.write('Ludovic Calmettes')
-st.sidebar.write(' ')
-st.sidebar.write('### Mentor:')
-st.sidebar.write('Khalil')
+st.sidebar.write("""
+                 **Auteurs :**  
+                CALMETTES Ludovic  
+                LE NOZACH Matthieu  
+                KAPNANG Pierre olivier  
+                NOUYETOWA-TOLOFON  Hyppolyte                 
+                 """)
 
+st.sidebar.write(' ')
+st.sidebar.write("""
+                 **Mentor:**  
+                Khalil
+                 """)
