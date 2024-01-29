@@ -8,17 +8,7 @@ import matplotlib.pyplot as plt
 images_path = './data/images/'     
 
 
-# Import d'un modèle entrainé
-# Import d'un X_train, y_train
-# Entrer un nouveau vehicule en choisissant les parametres --> Prédiction
-# Choix d'un véhicule dans la base de donnée, (propositions a partir de criteres fixés, ou véhicule "le plus proche") 
-# --> Prédiction / vrai valeur
-# Peut on implementer un predictif partiel, a partir de quelques (ou une) caractéristiques. --> Donne le Co2 ou son intervalle ou la proba de classe (plutot stat alors)
-# Montrer les quelques graphiques réalisés (quelle interactivité ? plutot base de donnée d'images)
-
-
-# Page "Model"
-
+# Page "Modeles de ML"
 def app(df) :
     st.write("# Algorithmes de Machine Learning")
 
@@ -33,31 +23,37 @@ def app(df) :
 
 
 
-    tab1, tab2, Tab3 = st.tabs(["regression", "classification", "deep learning"])
+    tab1, tab2, tab3, tab4 = st.tabs(["regression", "classification", "deep learning", "interprétabilité"])
 
+    ####################################### REGRESSIOIN ##############################
     with tab1:
-            
+
         st.write("""
-                 # Problème de régression
-                 ---
-                 ### 1. Modèle de Regression Linéaire 
-                 - ###### Modèle simple sans régularisation
-                 - ###### Modèle régularisé avec recherche des meilleurs paramètres.
-                   Même si notre premier modèle ne semblait pas conduire à du surapprentissage, nous avons voulu tester differents paramètres de régularisation \
-                  afin de le confirmer, et observer les effets des régularisations (Lasso, Ridge).  
-                 
-                   **La régularisation n'apporte rien !!**  
-                   Les meilleurs paramères trouvés par grille de recherche et valdation croisée sont pour alpha = 0, c'est a dire sans régularisation.   
-                 """)
+                # Un problème de Régression
+                ---
+                ## 1. Modèle de Regression Linéaire 
+                     """)
         
-        col1, col2, clo3 = st.columns([0.25, 0.45, 0.3], gap = 'medium')
+        col1, col2 = st.columns([0.62, 0.38], gap = 'small')
+        with col1:
+            st.write("""
+                - ###### Modèle simple sans régularisation
+                - ###### Modèle régularisé avec recherche des meilleurs paramètres.
+                Même si notre premier modèle ne semblait pas conduire à du surapprentissage, nous avons voulu tester differents paramètres de régularisation \
+                afin de le confirmer, et observer les effets des régularisations (Lasso, Ridge).  
+                
+                **La régularisation n'apporte rien !!**  
+                Les meilleurs paramères trouvés par grille de recherche et valdation croisée sont pour alpha = 0, c'est a dire sans régularisation.   
+                """)
+            img_name="form_regr.png"
+            st.image(images_path + img_name, use_column_width= "auto" )
         with col2:
             img_name = "lr_elastic_net.png"    
             st.image(images_path + img_name,
             use_column_width= True )
-
+        
         st.write("""
-                    ##### Résultats :  """)
+                    #### Résultats :  """)
         col1, col2 = st.columns([0.7, 0.3])
         with col1:
             st.write("""   
@@ -66,15 +62,14 @@ def app(df) :
                     L'erreur moyenne relative est d'environ 10%  
                     """)
         with col2:
-            img_name = "score_lr.png"
-            img = "./data/images/lr_elastic_net.png"                 
+            img_name = "score_lr.png"     
             st.image(images_path + img_name,
             use_column_width= True )
 
         st.write("Ce modèle donne déjà des résultats qui semblent corrects avec un **R2_score de 0,89**, c’est-à-dire que 89% de la variance du CO2 peut être expliquée par ce modèle de régression.")
         st.write("")  
 
-        st.write("### 2. Modèle XGBoost pour la Régression.")  
+        st.write("## 2. Modèle XGBoost pour la Régression.")  
 
         col1, col2 = st.columns([0.65, 0.35], gap = 'medium')
         with col1:             
@@ -119,18 +114,223 @@ def app(df) :
                 Pas de sur-apprentissage (testé). L'erreur moyenne sur les prédictions est d'environ 1g/km pour des valeurs de l'ordre de 130 g/km.  
                 L'erreur moyenne relative est d'environ 1 %  
 
-                Ce modèle donne donc d'excellents résultats avec un R2_score de 0,997.   
+                Ce modèle donne donc d'excellents résultats avec un **R2_score de 0,997**.   
                 99,7 % de la variance du CO2 peut être expliquée par le modèle. Difficile d'imaginer faire mieux !
 
                     """)
         with col2:
-            img_name = "score_xgb.png"
-            img = "./data/images/lr_elastic_net.png"                 
+            img_name = "score_xgb.png"      
             st.image(images_path + img_name,
             use_column_width= True )
 
-        # st.write("Ce modèle donne déjà des résultats qui semblent corrects avec un **R2_score de 0,89**, c’est-à-dire que 89% de la variance du CO2 peut être expliquée par ce modèle de régression.")
-        # st.write("")  
+        st.write("## Analyse plus détaillées des résultats XGBoost") 
+        st.write("")
+
+
+
+
+        col1, col2, col3 = st.columns([0.26, 0.35, 0.39], gap = 'small')
+        img_name="reg_xgb_ex.png" 
+        col1.image(images_path + img_name, use_column_width= True )
+        img_name="reg_xgb_plot2.png"
+        col2.image(images_path + img_name, use_column_width= True )
+        img_name="reg_xgb_residus.png" 
+        col3.image(images_path + img_name, use_column_width= True )
+        compare = col3.checkbox("comparer avec la regression lineaire")
+
+   
+        if compare :
+            col1, col2, col3 = st.columns([0.26, 0.35, 0.39], gap = 'small')
+            img_name="reg_lr_ex.png" 
+            col1.image(images_path + img_name, use_column_width= True )
+            img_name="reg_lr_plot.png"
+            col2.image(images_path + img_name, use_column_width= True )
+            img_name="reg_lr_residus.png" 
+            col3.image(images_path + img_name, use_column_width= True )        
+
+        st.write("Distribution des résidus")
+        col1, col2 = st.columns([0.35, 0.65], gap = 'medium')
+        img_name="reg_xgb_qq.png"  
+        col1.image(images_path + img_name, use_column_width= True )
+        img_name=img_name="reg_xgb_box.png"
+        col2.image(images_path + img_name, use_column_width= True )
+
+        st.write("")
+         
+        st.write("""   
+                ## Bilan modèles de regression :
+                - Excellent score pour XGBoost, erreur moyenne de 1g/km (1 %)
+                 - Regression linéaire : peut aider à comprendre simplement les features, le modèle XGBoost est plus difficule à interpréter (Modele d'ensemble)
+                 """)
+        
+    ####################################### CLASSIFICATION ##############################
+        
+        with tab2:
+
+            st.write("""
+                # Un problème de Classification 
+                ---
+                 Particularités :
+                 Modèles explorés :
+                 - feature importance
+                 - shap_values
+                 - arbre de décission
+
+                 """)
+
+       
+    ####################################### DEEP LEARNING ###############################
+        
+    ####################################### INTERPRETABILITE #############################
+                 
+    with tab4:
+
+        st.write("""
+                # Interprétabilité des modèles
+                ---
+                 Un modèle très performant: XGBoost => Peut on comprendre ses décicions ?
+                 - feature importance
+                 - shap_values
+                 - arbre de décission
+                 """)
+        
+        st.write('## Calcul de la "Feature Importance"')
+        st.write("")
+        # Texte a centrer
+        st.write("##### Méthode XGBoost")
+        img_name="xgb_feat1.png"
+        st.image(images_path + img_name, use_column_width= "auto" )
+
+        st.write("##### Méthode Shap Values")
+        col1, col2 = st.columns([0.65, 0.35], gap = 'medium')
+        img_name="xgb_feat2.png"
+        col1.image(images_path + img_name, use_column_width= True )
+
+        st.write("##### Méthode Skater")
+        img_name="xgb_feat3.png"
+        st.image(images_path + img_name, use_column_width= True )
+
+        st.write("""
+                - Des résultats assez différents.  
+                - La feature importance n'est pas un concept mathématique définit, il existe plusieurs approches pour l'évaluer.  
+                - Sur les 6 premières valeurs, 5 de commune. => **Les 5 plus influentes**  
+                  Plus de 82% de la feature importance totale, quelquesoit la méthode.
+                    -	Electric Range
+                    -	Mass
+                    -	Engine Power
+                    -	Engine Capacity
+                    -	Innovative Emission WLTP
+                 
+                 ## Les "Shap_Values" - Méthode retenue             
+                SHAP (SHapley Additive exPlanations) est une technique d'interprétabilité des modèles basées sur la théorie des jeux et la théorie des ensembles.  
+                Les shap values possèdent des propriétés mathématiques cohérentes => Renforce leur crédibilité et usages.  
+                Des algorithmes performants et de nombreux outils graphiques   
+                Sur notre modèle XGBoost de regression, cela parait être la méthode la plus "logique" (fariquants "mal classés", petrol et diesel "importants").   
+                
+                Les émissions de CO2 sont donc principalement liées à: 
+                -	La présence d'un mode électriques et son autonomie. 				37 %
+                -	Le poids du véhicule.								23 %
+                -	Les caractéristiques moteur (cylindrée et puissance).				21 %
+                -	La présence et l'efficacité de technologies innovantes de réduction de CO2.	4 %	
+                 
+                ## Les "Shap_Values" - Outils graphiques
+
+                **Interprétation globale**
+                 
+
+                 """)
+
+        col1, col2 = st.columns([0.5, 0.5], gap = 'medium')
+        img_name="xgb_shap1.png"
+        col1.image(images_path + img_name, use_column_width= "auto" )
+
+        img_name="xgb_shap2.png"
+        col2.image(images_path + img_name, use_column_width= "auto" )
+        col2.write("")
+
+        st.write("**Interprétation locale**")
+        col1, col2 = st.columns([0.8, 0.2], gap = 'medium')
+        img_name="xgb_shap3bis.png"
+        col1.image(images_path + img_name, use_column_width= "auto" )
+
+
+
+
+   
+
+        st.write('## Arbre de décision"')
+        st.write('##### XGB: Arbre de décision de rang 0, sur 4 niveau"')
+        st.write("""
+                    Il ne permet que d'avoir une représentation simpliste de l'algorithme utilisé par XGBoost.  
+                    Dans la réalité pour notre modèle, il se combine avec 499 autres arbres de poids moindre, et sa profondeur va jusqu’à 6.""")
+        
+        img_name="xgb_plot_tree.png"
+        st.image(images_path + img_name, use_column_width= True )
+
+                 
+  
+                 
+
+
+####################################### RELIQUAT A LAISSER ##############################
+# Pour le moment (peut etre à utiliser)
+
+
+        #         ## 1. Modèle de Regression Linéaire 
+        #              """)
+        
+        # col1, col2 = st.columns([0.62, 0.38], gap = 'small')
+        # with col1:
+        #     st.write("""
+        #         - ###### Modèle simple sans régularisation
+        #         - ###### Modèle régularisé avec recherche des meilleurs paramètres.
+        #         Même si notre premier modèle ne semblait pas conduire à du surapprentissage, nous avons voulu tester differents paramètres de régularisation \
+        #         afin de le confirmer, et observer les effets des régularisations (Lasso, Ridge).  
+                
+        #         **La régularisation n'apporte rien !!**  
+        #         Les meilleurs paramères trouvés par grille de recherche et valdation croisée sont pour alpha = 0, c'est a dire sans régularisation.   
+        #         """)
+            
+        # with col2:
+        #     img_name = "lr_elastic_net.png"    
+        #     st.image(images_path + img_name,
+        #     use_column_width= True )
+
+        # st.write("")
+
+        # texte_colore = ":grey[comparer avec la regression lineaire]"
+        # comparer = st.expander(texte_colore , expanded=False)
+        # with comparer:
+        #     col1, col2, col3 = st.columns([0.26, 0.35, 0.39], gap = 'small')
+        #     img_name="reg_lr_ex.png" 
+        #     col1.image(images_path + img_name, use_column_width= True )
+        #     img_name="reg_lr_plot.png"
+        #     col2.image(images_path + img_name, use_column_width= True )
+        #     img_name="reg_lr_residus.png" 
+        #     col3.image(images_path + img_name, use_column_width= True )
+
+
+
+        # texte_colore = ":grey[comparer avec la regression lineaire]"
+        # comparer2 = st.expander("<div style='text-align:right;'>Texte aligné à droite</div>", expanded=False)
+        # with comparer2:
+        #     st.markdown("<div style='text-align:right;'>Texte aligné à droite</div>", unsafe_allow_html=True)
+        #     col1, col2 = st.columns([0.35, 0.65], gap = 'large')
+        #     img_name=img_name="reg_lr_box.png"
+        #     col2.image(images_path + img_name, use_column_width= True )
+
+
+
+
+
+                # st.write("""
+                #         XGBoost est une amélioration optimisée de l'algorithme de boosting en arbres de décision.
+                #         Le boosting consiste à entraîner plusieurs modèles faibles (ici des arbres de décision peu profonds) de manière itérative, en mettant à chaque itération l'accent sur les erreurs \
+                #         commises par les arbres précédents. Le modèle final tient compte de l'ensemble des modèles faibles entrainés pour fournir ses prédictions. 
+                #         """)
+
+            # # st.write("Ce modèle donne déjà des résultats qui semblent corrects avec un **R2_score de 0,89**, c’est-à-dire que 89% de la variance du CO2 peut être expliquée par ce modèle de régression.")
+            # # st.write("")  
              
             
 
@@ -142,15 +342,6 @@ def app(df) :
 
 
 
-
-
-        """
-                    use_column_width= ",
-        o	Graphique
-        o	Pas d'overfitting
-        -	Score rapide, conclusion sur les features (mini graph ?)
-
-        """
 
 
 
