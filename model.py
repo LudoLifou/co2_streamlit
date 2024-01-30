@@ -36,9 +36,11 @@ def app(df) :
         
         col1, col2 = st.columns([0.62, 0.38], gap = 'small')
         with col1:
+            img_name="form_regr.png"
+            # st.image(images_path + img_name, width = 400, use_column_width= "never" )
             st.write("""
-                - ###### Modèle simple sans régularisation
-                - ###### Modèle régularisé avec recherche des meilleurs paramètres.
+                - ##### Modèle simple sans régularisation
+                - ##### Modèle régularisé avec recherche des meilleurs paramètres.
                 Même si notre premier modèle ne semblait pas conduire à du surapprentissage, nous avons voulu tester differents paramètres de régularisation \
                 afin de le confirmer, et observer les effets des régularisations (Lasso, Ridge).  
                 
@@ -51,6 +53,8 @@ def app(df) :
             img_name = "lr_elastic_net.png"    
             st.image(images_path + img_name,
             use_column_width= True )
+            
+
         
         st.write("""
                     #### Résultats :  """)

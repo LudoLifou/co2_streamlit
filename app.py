@@ -1,4 +1,3 @@
-# Le streamlit devra etre suport de présentation ? Voir idées des autres
 
 import streamlit as st
 import pandas as pd
@@ -16,12 +15,13 @@ import dataviz
 import model
 import demo
 import conclusion
-import exemple
 import accueil
+
 
 # Voir si c'est a mettre dans les pages ou la.
 st.set_page_config(layout="wide")   # pb eventuel 
 st.set_option('deprecation.showPyplotGlobalUse', False)
+
 
 #----------------------------------------------Chargement des données
 
@@ -57,9 +57,9 @@ df_no_dum = st.session_state.df_no_dum
 
 
 
-st.sidebar.image("./data/images/pollution3.png", width=250, )
+st.sidebar.image("./data/images/pollution3.png", width=250, use_column_width="auto" )
 
-st.sidebar.title("Emissions de CO2 des vehicules")
+st.sidebar.write("# Emissions CO2 des vehicules")
 
 PAGES = { 
     "Acceuil": accueil,
@@ -67,8 +67,7 @@ PAGES = {
     "Exploration": dataviz,
     "Modèles ML": model,
     "Démonstration": demo,
-    "Conclusion et perspectives": conclusion,
-    "Test_temp": exemple
+    "Conclusion, perspectives": conclusion
     }
 
 selection = st.sidebar.radio("Menu", list(PAGES.keys()))
@@ -89,8 +88,7 @@ st.sidebar.write("""
                 NOUYETOWA-TOLOFON  Hyppolyte                 
                  """)
 
-st.sidebar.write(' ')
 st.sidebar.write("""
                  **Mentor:**  
-                Khalil
+                OUERTANI Khalil
                  """)

@@ -57,8 +57,8 @@ def app(df) :
     # TODO: Réordonner colonnes, ajout de fonctionnalités :
     # - Passer une ligne du df en inputs pour Comparer predict/réel 
 
-    st.write("## Affichage du dataset")
-    st.write("exemple sur 15 lignes (aléatoires, reset pour changer)")
+    
+    
 
     # Créer 15 lignes aleatoires
 
@@ -67,18 +67,24 @@ def app(df) :
         # st.session_state['df_sample'] = df_no_dum.sample(15)
     df_sample = st.session_state['df_sample'] 
 
-    # Boutons 
     col1, col2 = st.columns([0.8,0.2], gap = 'large')
-
     with col1:
-        # Checkbox: Choisir les colonnes
-        var_select = st.checkbox('choisir les variables')
+        st.write("## Affichage du dataset")
 
     with col2:
         # Bouton reset
         if st.button("Reset"):
             st.session_state['df_sample'] = df_no_dum.sample(15)
             df_sample = st.session_state['df_sample'] 
+    
+
+    col1, col2 = st.columns([0.65,0.35], gap = 'large')
+    with col1:
+        st.write("Exemple sur 15 lignes aléatoires (bouton reset pour changer)")
+
+    with col2:
+        # Checkbox: Choisir les colonnes
+        var_select = st.checkbox('Choisir les variables')
 
 
     # Selection des features
@@ -93,7 +99,7 @@ def app(df) :
     # Affiche le df    
     st.dataframe(df_sample[colonnes])    
 
-    if st.checkbox('Afficher Moyennes et Quartilles'):     # chekbox optionel
+    if st.checkbox('Afficher les Moyennes et Quartilles'):     # chekbox optionel
         st.dataframe(df.describe())
 
            

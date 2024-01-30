@@ -165,13 +165,14 @@ def app(df) :
             
             # Catégorie decilles (fr-al 21: 10/25/50/75/90 = 0/62/124/142/167) 
             if ypred < 62 :
-                text = "Félicitations. Cette voiture devrait etre dans les 25% les moins polluantes. Seule les electriques sont dans les 10%" 
+                text = """Félicitations. Cette voiture devrait etre dans les 25% les moins polluantes.  
+                Seule les electriques sont dans les 10%""" 
             elif ypred < 124 :
-                text = "Pollution moyenne (2nd quartille)"
+                text = "Pollution moyenne (2nd quartile)"
             elif ypred < 142 :
-                text = "Pollution assez forte(3eme quartille)"
+                text = "Pollution assez forte(3eme quartile)"
             elif ypred < 167:
-                text = "Pollution forte(4eme quartille)"
+                text = "Pollution forte(4eme quartile)"
             else :
                 text = "Felicitation. Cette voiture devrait etre dans les 10% les plus polluantes. On peut pas faire mieux !!"
 
