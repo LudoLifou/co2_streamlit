@@ -216,19 +216,19 @@ def app(df) :
 
         st.write("""
                 - Des résultats assez différents.  
-                - La feature importance n'est pas un concept mathématique définit, il existe plusieurs approches pour l'évaluer.  
+                La feature importance n'est pas un concept mathématique définit, il existe plusieurs approches pour l'évaluer.  
                 - Sur les 6 premières valeurs, 5 de commune. => **Les 5 plus influentes**  
-                  Plus de 82% de la feature importance totale, quelquesoit la méthode.
+                  Plus de 82% de la feature importance totale, quel que soit la méthode.
                     -	Electric Range
                     -	Mass
                     -	Engine Power
                     -	Engine Capacity
                     -	Innovative Emission WLTP
                  
-                 ## Les "Shap_Values" - Méthode retenue             
+                 ## Les Shap_Values - Méthode retenue             
                 SHAP (SHapley Additive exPlanations) est une technique d'interprétabilité des modèles basées sur la théorie des jeux et la théorie des ensembles.  
                 Les shap values possèdent des propriétés mathématiques cohérentes => Renforce leur crédibilité et usages.  
-                Des algorithmes performants et de nombreux outils graphiques   
+                Des algorithmes performants et de nombreux outils graphiques.   
                 Sur notre modèle XGBoost de regression, cela parait être la méthode la plus "logique" (fariquants "mal classés", petrol et diesel "importants").   
                 
                 Les émissions de CO2 sont donc principalement liées à: 
@@ -237,7 +237,7 @@ def app(df) :
                 -	Les caractéristiques moteur (cylindrée et puissance).				21 %
                 -	La présence et l'efficacité de technologies innovantes de réduction de CO2.	4 %	
                  
-                ## Les "Shap_Values" - Outils graphiques
+                ## Les Shap_Values - Outils graphiques
 
                 **Interprétation globale**
                  
@@ -258,11 +258,7 @@ def app(df) :
         col1.image(images_path + img_name, use_column_width= "auto" )
 
 
-
-
-   
-
-        st.write('## Arbre de décision"')
+        st.write('## Arbre de décision')
         st.write('##### XGB: Arbre de décision de rang 0, sur 4 niveau"')
         st.write("""
                     Il ne permet que d'avoir une représentation simpliste de l'algorithme utilisé par XGBoost.  
@@ -280,28 +276,6 @@ def app(df) :
 # Pour le moment (peut etre à utiliser)
 
 
-        #         ## 1. Modèle de Regression Linéaire 
-        #              """)
-        
-        # col1, col2 = st.columns([0.62, 0.38], gap = 'small')
-        # with col1:
-        #     st.write("""
-        #         - ###### Modèle simple sans régularisation
-        #         - ###### Modèle régularisé avec recherche des meilleurs paramètres.
-        #         Même si notre premier modèle ne semblait pas conduire à du surapprentissage, nous avons voulu tester differents paramètres de régularisation \
-        #         afin de le confirmer, et observer les effets des régularisations (Lasso, Ridge).  
-                
-        #         **La régularisation n'apporte rien !!**  
-        #         Les meilleurs paramères trouvés par grille de recherche et valdation croisée sont pour alpha = 0, c'est a dire sans régularisation.   
-        #         """)
-            
-        # with col2:
-        #     img_name = "lr_elastic_net.png"    
-        #     st.image(images_path + img_name,
-        #     use_column_width= True )
-
-        # st.write("")
-
         # texte_colore = ":grey[comparer avec la regression lineaire]"
         # comparer = st.expander(texte_colore , expanded=False)
         # with comparer:
@@ -314,106 +288,4 @@ def app(df) :
         #     col3.image(images_path + img_name, use_column_width= True )
 
 
-
-        # texte_colore = ":grey[comparer avec la regression lineaire]"
-        # comparer2 = st.expander("<div style='text-align:right;'>Texte aligné à droite</div>", expanded=False)
-        # with comparer2:
-        #     st.markdown("<div style='text-align:right;'>Texte aligné à droite</div>", unsafe_allow_html=True)
-        #     col1, col2 = st.columns([0.35, 0.65], gap = 'large')
-        #     img_name=img_name="reg_lr_box.png"
-        #     col2.image(images_path + img_name, use_column_width= True )
-
-
-
-
-
-                # st.write("""
-                #         XGBoost est une amélioration optimisée de l'algorithme de boosting en arbres de décision.
-                #         Le boosting consiste à entraîner plusieurs modèles faibles (ici des arbres de décision peu profonds) de manière itérative, en mettant à chaque itération l'accent sur les erreurs \
-                #         commises par les arbres précédents. Le modèle final tient compte de l'ensemble des modèles faibles entrainés pour fournir ses prédictions. 
-                #         """)
-
-            # # st.write("Ce modèle donne déjà des résultats qui semblent corrects avec un **R2_score de 0,89**, c’est-à-dire que 89% de la variance du CO2 peut être expliquée par ce modèle de régression.")
-            # # st.write("")  
-             
-            
-
-
-
-
-                 
-
-
-
-
-
-
-
-                  
-                  
-
-          
-
-
-    # tab2.subheader("A tab with the data")
-    # tab2.write(data)
-
-
-
-
-    # def lr(Engine_Size, Cylinders, Fuel_Consumption_City,Fuel_Consumption_Hwy, Fuel_Consumption_Comb,Fuel_Consumption_Comb_mpg,Fuel_Type_E, Fuel_Type_X,Fuel_Type_Z, Transmission_A4, Transmission_A5, Transmission_A6,Transmission_A7, Transmission_A8, Transmission_A9,Transmission_AM5, Transmission_AM6, Transmission_AM7,Transmission_AM8, Transmission_AM9, Transmission_AS10,Transmission_AS4, Transmission_AS5, Transmission_AS6,Transmission_AS7, Transmission_AS8, Transmission_AS9,Transmission_AV, Transmission_AV10, Transmission_AV6,Transmission_AV7, Transmission_AV8, Transmission_M5,Transmission_M6, Transmission_M7, Make_Type_Luxury,Make_Type_Premium, Make_Type_Sports, Vehicle_Class_Type_SUV,Vehicle_Class_Type_Sedan, Vehicle_Class_Type_Truck):
-    # c=pd.DataFrame([Engine_Size, Cylinders, Fuel_Consumption_City,Fuel_Consumption_Hwy, Fuel_Consumption_Comb,Fuel_Consumption_Comb_mpg,Fuel_Type_E, Fuel_Type_X,Fuel_Type_Z, Transmission_A4, Transmission_A5, Transmission_A6,Transmission_A7, Transmission_A8, Transmission_A9,Transmission_AM5, Transmission_AM6, Transmission_AM7,Transmission_AM8, Transmission_AM9, Transmission_AS10,Transmission_AS4, Transmission_AS5, Transmission_AS6,Transmission_AS7, Transmission_AS8, Transmission_AS9,Transmission_AV, Transmission_AV10, Transmission_AV6,Transmission_AV7, Transmission_AV8, Transmission_M5,Transmission_M6, Transmission_M7, Make_Type_Luxury,Make_Type_Premium, Make_Type_Sports, Vehicle_Class_Type_SUV,Vehicle_Class_Type_Sedan, Vehicle_Class_Type_Truck]).T
-    # return model.predict(c)
-          
-    
-    # prediction=lr(Engine_Size, Cylinders, Fuel_Consumption_City,Fuel_Consumption_Hwy, Fuel_Consumption_Comb,Fuel_Consumption_Comb_mpg,Fuel_Type_E, Fuel_Type_X,Fuel_Type_Z, Transmission_A4, Transmission_A5, Transmission_A6,Transmission_A7, Transmission_A8, Transmission_A9,Transmission_AM5, Transmission_AM6, Transmission_AM7,Transmission_AM8, Transmission_AM9, Transmission_AS10,Transmission_AS4, Transmission_AS5, Transmission_AS6,Transmission_AS7, Transmission_AS8, Transmission_AS9,Transmission_AV, Transmission_AV10, Transmission_AV6,Transmission_AV7, Transmission_AV8, Transmission_M5,Transmission_M6, Transmission_M7, Make_Type_Luxury,Make_Type_Premium, Make_Type_Sports, Vehicle_Class_Type_SUV,Vehicle_Class_Type_Sedan, Vehicle_Class_Type_Truck)
-    # return render_template('index.html',prediction_text="Co2 Emissions by car is {}".format(np.round(prediction,2)))
-
-# # Inserer dans fichier d'aide: Remplir les valeurs manquante, méthode rapide
-#     for col in X_cat.columns:   
-#         X_cat[col] = X_cat[col].fillna(X_cat[col].mode()[0])
-#     for col in X_num.columns:
-#         X_num[col] = X_num[col].fillna(X_num[col].median())
-#     X_cat_scaled = pd.get_dummies(X_cat, columns=X_cat.columns)
-#     X = pd.concat([X_cat_scaled, X_num], axis = 1)
-
-#     from sklearn.model_selection import train_test_split
-#     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=123)
-
-#     from sklearn.preprocessing import StandardScaler
-#     scaler = StandardScaler()
-#     X_train[X_num.columns] = scaler.fit_transform(X_train[X_num.columns])
-#     X_test[X_num.columns] = scaler.transform(X_test[X_num.columns])
-
-# # Inserer dans fichier d'aide: tester plusieurs clf, méthode rapide
-#     from sklearn.ensemble import RandomForestClassifier
-#     from sklearn.svm import SVC
-#     from sklearn.linear_model import LogisticRegression
-#     from sklearn.metrics import confusion_matrix
-
-#     def prediction(classifier):
-#         if classifier == 'Random Forest':
-#             clf = RandomForestClassifier()
-#         elif classifier == 'SVC':
-#             clf = SVC()
-#         elif classifier == 'Logistic Regression':
-#             clf = LogisticRegression()
-#         clf.fit(X_train, y_train)
-#         return clf
-
-#     def scores(clf, choice):
-#         if choice == 'Accuracy':
-#             return clf.score(X_test, y_test)
-#         elif choice == 'Confusion matrix':
-#             return confusion_matrix(y_test, clf.predict(X_test))
-        
-#     choix = ['Random Forest', 'SVC', 'Logistic Regression']
-#     option = st.selectbox('Choix du modèle', choix)
-#     st.write('Le modèle choisi est :', option)
-
-#     clf = prediction(option)
-#     display = st.radio('Que souhaitez-vous montrer ?', ('Accuracy', 'Confusion matrix'))
-#     if display == 'Accuracy':
-#         st.write(scores(clf, display))
-#     elif display == 'Confusion matrix':
-#         st.dataframe(scores(clf, display)
+  

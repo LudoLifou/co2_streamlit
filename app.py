@@ -85,7 +85,7 @@ st.sidebar.write("""
                 CALMETTES Ludovic  
                 LE NOZACH Matthieu  
                 KAPNANG Pierre olivier  
-                NOUYETOWA-TOLOFON  Hyppolyte                 
+                NOUYETOWA-TOLOFON  Hippolyte                 
                  """)
 
 st.sidebar.write("""
