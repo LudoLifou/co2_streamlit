@@ -331,17 +331,16 @@ def app(df) :
         st.write("""
         ## Deep Learning - Réseau de Neurones profonds 
         ---        
+        #### Principe :  
         """)
 
 
-
-      
   
         
         col1, col2 = st.columns([0.65, 0.35])
         with col1:
             st.write("""
-                    #### Principe :  
+
                     - Test du Deep Learning pour améliorer les modèles classifications.  
                     - Nous avons étudié plusieurs architectures de caractéristiques très différentes: Reseau large, profond, avec ou sans dropout.        
 
