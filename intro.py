@@ -61,6 +61,6 @@ def app(df) :
 
     with col2:
             classes = "./data/images/classes.png"
-            st.image(classes, use_column_width = "auto", output_format = "PNG")
+            st.image(classes, use_container_width = "auto", output_format = "PNG")
 
 

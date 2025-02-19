@@ -1,4 +1,4 @@
-name: co2
+name: co23
 channels:
   - defaults
 dependencies:
@@ -20,4 +20,5 @@ dependencies:
   - unidecode
   - xgboost
   - pango
-prefix: C:\Users\ludov\.conda\envs\co2
+prefix: C:\Users\ludov\.conda\envs\co3
+

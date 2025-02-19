@@ -9,26 +9,25 @@ import streamlit.components.v1 as components
 from PIL import Image
 import plotly.express as px
 
-
+# Import des pages
 import intro
 import dataviz
 import model
 import demo
 import conclusion
 import accueil
+import warnings
 
+# Affichage en plein écran
+#TODO: Voir si c'est a mettre den début de chaque pages ou ici.
+st.set_page_config(layout="wide")   # pb eventuel   
 
-# Voir si c'est a mettre dans les pages ou la.
-st.set_page_config(layout="wide")   # pb eventuel 
-st.set_option('deprecation.showPyplotGlobalUse', False)
+#----------------------------------------------  Chargement des données ----------------------------------------------
 
-
-#----------------------------------------------Chargement des données
-
-# Definition des chemins et noms 
+# Definition des chemins / noms 
 file_path = './data/'     
-file_name_no_dummies = "c02_non_dummies_reduit_2e5.pkl"      # pour affichage avant dummies         
-file_name_preprocessed = "c02_reduit_2e5.pkl"               # apres Nbook preprocess
+file_name_no_dummies = "c02_non_dummies_reduit_2e5.pkl"      # (pour affichage avant dummies)        
+file_name_preprocessed = "c02_reduit_2e5.pkl"                # (apres Nbook preprocess)
            
 
 # Fonction pour charger les données 
@@ -38,11 +37,11 @@ def load_data(file_name):
     return data
 
 
-# Chargement des données    
-# Session State provides a dictionary-like interface where you can save information that is preserved between script reruns or multipage application
-# st.session_state["my_key"] or st.session_state.my_key.
+# Gestion de la mémoire avec un dictionnaire session_state - Permet de stocker des données entre les sessions et reruns de l'application
+#       Session State provides a dictionary-like interface where you can save information that is preserved between script reruns or multipage application
+#       st.session_state["my_key"] or st.session_state.my_key.
 
-# Chargement df_preprocessed
+# Chargement du df_preprocessed
 if 'df' not in st.session_state:            # ou df = load_data()            
     st.session_state['df'] = load_data(file_name = file_name_preprocessed)
 df = st.session_state.df
@@ -53,13 +52,14 @@ if 'df_no_dum' not in st.session_state:
 df_no_dum = st.session_state.df_no_dum
 
 
-#------------------------------------------------SOMMAIRE 
+#---------------------------------------------- SOMMAIRE ----------------------------------------------
 
-
-
-st.sidebar.image("./data/images/pollution3.png", width=250, use_column_width="auto" )
-
+# Sidebar    
+st.sidebar.image("./data/images/pollution3.png", width=250, use_container_width="auto" )
 st.sidebar.write("# Emissions CO2 des vehicules")
+
+# Items du sommaire et correspondance avec les "pages" importées
+# Chaque page a une fonction app(df) qui prend en argument le df et affiche le contenu de la page.
 
 PAGES = { 
     "Acceuil": accueil,
@@ -74,9 +74,7 @@ selection = st.sidebar.radio("Menu", list(PAGES.keys()))
 page = PAGES[selection]
 page.app(df)
 
-
-
-## Affichage des auteurs et mentor en bas de la sidebar:
+## Affichage des auteurs et mentor
 st.sidebar.write(' ')
 st.sidebar.write(' ')
 st.sidebar.write(' ')

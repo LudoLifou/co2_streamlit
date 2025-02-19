@@ -37,7 +37,7 @@ def app(df) :
         col1, col2 = st.columns([0.62, 0.38], gap = 'small')
         with col1:
             img_name="form_regr.png"
-            # st.image(images_path + img_name, width = 400, use_column_width= "never" )
+            # st.image(images_path + img_name, width = 400, use_container_width= "never" )
             st.write("""
                 - ##### Modèle simple sans régularisation
                 - ##### Modèle régularisé avec recherche des meilleurs paramètres.
@@ -48,11 +48,11 @@ def app(df) :
                 Les meilleurs paramères trouvés par grille de recherche et valdation croisée sont pour alpha = 0, c'est a dire sans régularisation.   
                 """)
             img_name="form_regr.png"
-            st.image(images_path + img_name, use_column_width= "auto" )
+            st.image(images_path + img_name, use_container_width= "auto" )
         with col2:
             img_name = "lr_elastic_net.png"    
             st.image(images_path + img_name,
-            use_column_width= True )
+            use_container_width= True )
             
 
         
@@ -68,7 +68,7 @@ def app(df) :
         with col2:
             img_name = "score_lr.png"     
             st.image(images_path + img_name,
-            use_column_width= True )
+            use_container_width= True )
 
         st.write("Ce modèle donne déjà des résultats qui semblent corrects avec un **R2_score de 0,89**, c’est-à-dire que 89% de la variance du CO2 peut être expliquée par ce modèle de régression.")
         st.write("")  
@@ -106,7 +106,7 @@ def app(df) :
 
         with col2:
             url_image = "https://www.researchgate.net/profile/Li-Mingtao-2/publication/335483097/figure/fig3/AS:934217085100032@1599746118459/A-general-architecture-of-XGBoost.ppm"
-            st.image(url_image, width = 300, use_column_width= True )
+            st.image(url_image, width = 300, use_container_width= True )
         
 
         st.write("""
@@ -125,7 +125,7 @@ def app(df) :
         with col2:
             img_name = "score_xgb.png"      
             st.image(images_path + img_name,
-            use_column_width= True )
+            use_container_width= True )
 
         st.write("## Analyse plus détaillées des résultats XGBoost") 
         st.write("")
@@ -135,29 +135,29 @@ def app(df) :
 
         col1, col2, col3 = st.columns([0.26, 0.35, 0.39], gap = 'small')
         img_name="reg_xgb_ex.png" 
-        col1.image(images_path + img_name, use_column_width= True )
+        col1.image(images_path + img_name, use_container_width= True )
         img_name="reg_xgb_plot2.png"
-        col2.image(images_path + img_name, use_column_width= True )
+        col2.image(images_path + img_name, use_container_width= True )
         img_name="reg_xgb_residus.png" 
-        col3.image(images_path + img_name, use_column_width= True )
+        col3.image(images_path + img_name, use_container_width= True )
         compare = col3.checkbox("comparer avec la regression lineaire")
 
    
         if compare :
             col1, col2, col3 = st.columns([0.26, 0.35, 0.39], gap = 'small')
             img_name="reg_lr_ex.png" 
-            col1.image(images_path + img_name, use_column_width= True )
+            col1.image(images_path + img_name, use_container_width= True )
             img_name="reg_lr_plot.png"
-            col2.image(images_path + img_name, use_column_width= True )
+            col2.image(images_path + img_name, use_container_width= True )
             img_name="reg_lr_residus.png" 
-            col3.image(images_path + img_name, use_column_width= True )        
+            col3.image(images_path + img_name, use_container_width= True )        
 
         st.write("Distribution des résidus")
         col1, col2 = st.columns([0.35, 0.65], gap = 'medium')
         img_name="reg_xgb_qq.png"  
-        col1.image(images_path + img_name, use_column_width= True )
+        col1.image(images_path + img_name, use_container_width= True )
         img_name=img_name="reg_xgb_box.png"
-        col2.image(images_path + img_name, use_column_width= True )
+        col2.image(images_path + img_name, use_container_width= True )
 
         st.write("")
          
@@ -202,7 +202,7 @@ def app(df) :
                         """)
         with col2:
             img_name = "tree.png"
-            st.image(images_path + img_name, use_column_width= True )
+            st.image(images_path + img_name, use_container_width= True )
 
                 
         
@@ -227,7 +227,7 @@ def app(df) :
                         """)
         with col2:
             img_name = "Screenshot from 2024-01-29 19-39-02.png"
-            st.image(images_path + img_name, use_column_width= True )
+            st.image(images_path + img_name, use_container_width= True )
             
         col1, col2 = st.columns([0.6, 0.4])
         with col1:
@@ -258,22 +258,22 @@ def app(df) :
             
             #st.markdown("<br>"*2, unsafe_allow_html=True)  # Add empty space before the image
             img_name = "Screenshot from 2024-01-29 20-21-10.png"
-            st.image(images_path + img_name, use_column_width=True)
+            st.image(images_path + img_name, use_container_width=True)
             img_name = "Screenshot from 2024-01-29 20-18-07.png"
-            st.image(images_path + img_name, use_column_width=True)
+            st.image(images_path + img_name, use_container_width=True)
 
             
         with col2:
             img_name = "Screenshot from 2024-01-29 20-25-42.png"
-            st.image(images_path + img_name, use_column_width=True)
+            st.image(images_path + img_name, use_container_width=True)
             img_name = "Screenshot from 2024-01-29 20-06-20.png"     
-            st.image(images_path + img_name, use_column_width= True )
+            st.image(images_path + img_name, use_container_width= True )
             
         with col3:
             img_name = "Screenshot from 2024-01-29 21-06-46.png"
-            st.image(images_path + img_name, use_column_width=True)
+            st.image(images_path + img_name, use_container_width=True)
             img_name = "Screenshot from 2024-01-29 21-09-19.png"     
-            st.image(images_path + img_name, use_column_width= True )
+            st.image(images_path + img_name, use_container_width= True )
 
         st.write("")  
         
@@ -300,16 +300,16 @@ def app(df) :
             st.write("**Decision Tree: premier split**")
             st.markdown("<br>"*3, unsafe_allow_html=True)  # Add empty space before the image
             img_name="Screenshot from 2024-01-29 20-00-17.png" 
-            col1.image(images_path + img_name, use_column_width= True )
+            col1.image(images_path + img_name, use_container_width= True )
         with col2:
             st.write("**Random Forest: feature importance**")
             st.markdown("<br>"*2, unsafe_allow_html=True)  # Add empty space before the image
             img_name="Screenshot from 2024-01-30 10-56-36.png"
-            col2.image(images_path + img_name, use_column_width= True )
+            col2.image(images_path + img_name, use_container_width= True )
         with col3:
             st.write("**XGBoost: feature importance**")
             img_name="Screenshot from 2024-01-30 11-10-02.png" 
-            col3.image(images_path + img_name, use_column_width= True ) 
+            col3.image(images_path + img_name, use_container_width= True ) 
 
 
 
@@ -355,7 +355,7 @@ def app(df) :
                 
         with col2:
             img_name = "Dense-Neural-Network.png"
-            st.image(images_path + img_name, use_column_width= True )
+            st.image(images_path + img_name, use_container_width= True )
 
         dtc_param = st.expander("Recherche des meilleurs parametres" , expanded=False)
         with dtc_param:
@@ -388,20 +388,20 @@ def app(df) :
             st.write("**Architecture simple**")
             st.write("Validation Accuracy = 0.9231")
             img_name = "Screenshot from 2024-01-30 11-22-55.png"
-            st.image(images_path + img_name, use_column_width=True)
+            st.image(images_path + img_name, use_container_width=True)
 
             
         with col2:
             st.write("**Architecture profonde**")
             st.write("Validation Accuracy: 0.881")
             img_name = "Screenshot from 2024-01-30 11-24-52.png"
-            st.image(images_path + img_name, use_column_width=True)
+            st.image(images_path + img_name, use_container_width=True)
             
         with col3:
             st.write("**Architecture large**")
             st.write("Validation Accuracy = 0.9235")
             img_name = "Screenshot from 2024-01-30 11-27-17.png"
-            st.image(images_path + img_name, use_column_width=True)
+            st.image(images_path + img_name, use_container_width=True)
 
         
         st.write("### Conclusion")  
@@ -429,16 +429,16 @@ def app(df) :
         # Texte a centrer
         st.write("##### Méthode XGBoost")
         img_name="xgb_feat1.png"
-        st.image(images_path + img_name, use_column_width= "auto" )
+        st.image(images_path + img_name, use_container_width= "auto" )
 
         st.write("##### Méthode Shap Values")
         col1, col2 = st.columns([0.65, 0.35], gap = 'medium')
         img_name="xgb_feat2.png"
-        col1.image(images_path + img_name, use_column_width= True )
+        col1.image(images_path + img_name, use_container_width= True )
 
         st.write("##### Méthode Skater")
         img_name="xgb_feat3.png"
-        st.image(images_path + img_name, use_column_width= True )
+        st.image(images_path + img_name, use_container_width= True )
 
         st.write("""
                 - Des résultats assez différents.  
@@ -472,16 +472,16 @@ def app(df) :
 
         col1, col2 = st.columns([0.5, 0.5], gap = 'medium')
         img_name="xgb_shap1.png"
-        col1.image(images_path + img_name, use_column_width= "auto" )
+        col1.image(images_path + img_name, use_container_width= "auto" )
 
         img_name="xgb_shap2.png"
-        col2.image(images_path + img_name, use_column_width= "auto" )
+        col2.image(images_path + img_name, use_container_width= "auto" )
         col2.write("")
 
         st.write("**Interprétation locale**")
         col1, col2 = st.columns([0.8, 0.2], gap = 'medium')
         img_name="xgb_shap3bis.png"
-        col1.image(images_path + img_name, use_column_width= "auto" )
+        col1.image(images_path + img_name, use_container_width= "auto" )
 
 
         st.write('## Arbre de décision')
@@ -491,7 +491,7 @@ def app(df) :
                     Dans la réalité pour notre modèle, il se combine avec 499 autres arbres de poids moindre, et sa profondeur va jusqu’à 6.""")
         
         img_name="xgb_plot_tree.png"
-        st.image(images_path + img_name, use_column_width= True )
+        st.image(images_path + img_name, use_container_width= True )
 
                  
   
@@ -507,11 +507,11 @@ def app(df) :
         # with comparer:
         #     col1, col2, col3 = st.columns([0.26, 0.35, 0.39], gap = 'small')
         #     img_name="reg_lr_ex.png" 
-        #     col1.image(images_path + img_name, use_column_width= True )
+        #     col1.image(images_path + img_name, use_container_width= True )
         #     img_name="reg_lr_plot.png"
-        #     col2.image(images_path + img_name, use_column_width= True )
+        #     col2.image(images_path + img_name, use_container_width= True )
         #     img_name="reg_lr_residus.png" 
-        #     col3.image(images_path + img_name, use_column_width= True )
+        #     col3.image(images_path + img_name, use_container_width= True )
 
 
   

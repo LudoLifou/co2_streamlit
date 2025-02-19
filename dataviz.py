@@ -6,7 +6,8 @@ import streamlit.components.v1 as components
 from PIL import Image
 import plotly.express as px
 import numpy as np
-# ------------------------------------- Fonctions -------------------------
+
+
 
 
 # ------------------------------------ Page "Data exploration  & Dataviz" ------------------------------
@@ -53,15 +54,12 @@ def app(df) :
              -	Normalisation standard (moyenne = 0 ; écart type = 1) de toutes les variables, car pas le même ordre de grandeur.
              """)
 
+
     ### ------------------------------------------------------------- Affichage du dataset---------------------------------
     # TODO: Réordonner colonnes, ajout de fonctionnalités :
     # - Passer une ligne du df en inputs pour Comparer predict/réel 
 
-    
-    
-
-    # Créer 15 lignes aleatoires
-
+    # Créer 15 lignes de valeurs aleatoires des features pour affichage
     if 'df_sample' not in st.session_state:                
         st.session_state['df_sample'] = df_no_dum.iloc[19:39]
         # st.session_state['df_sample'] = df_no_dum.sample(15)
@@ -148,11 +146,11 @@ def app(df) :
         img = "./data/images/corel_co2.png"
         st.image(img,
                 width = 2000,
-                use_column_width= True,
+                use_container_width= True,
                 output_format = "PNG")
         
         
-    # ------------------------------  Distripution CO2    
+    # ------------------------------  Distribution CO2    
     with tab5:
 
         col1,col2 = st.columns([0.57,0.43])
@@ -160,15 +158,15 @@ def app(df) :
         with col1:
             st.write("#### Distribution des voitures polluantes par type d'energie")    
             img = "./data/images/co2_distr_fueltype.png"
-            st.image(img, width = 2000, use_column_width= 'auto', output_format = "PNG")
+            st.image(img, width = 2000, use_container_width= 'auto', output_format = "PNG")
         with col2:
             st.write("#### Distribution des voitures polluantes - kde")
             img = "./data/images/co2_distr.png"
-            st.image(img, width = 2000, use_column_width= 'auto', output_format = "PNG")
+            st.image(img, width = 2000, use_container_width= 'auto', output_format = "PNG")
 
         st.write("#### Box_plot CO2 - Carburant")
         img = "./data/images/boxplot_Fuel_co2.png"
-        st.image(img, width = 2000, use_column_width= 'auto', output_format = "PNG")
+        st.image(img, width = 2000, use_container_width= 'auto', output_format = "PNG")
 
          # Checkbox: 
         if st.checkbox('Calculer'):
